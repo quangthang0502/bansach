@@ -6,4 +6,6 @@
 
     @include('include.slide')
 
+    @include('include.body-content')
+
 @endsection

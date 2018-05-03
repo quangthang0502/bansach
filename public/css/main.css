@@ -1,0 +1,23 @@
+.main-slide {
+  width: 100%;
+  display: block;
+}
+.main-slide img {
+  width: 100%;
+  height: 300px;
+}
+.main-slide a {
+  display: block;
+  text-decoration: none;
+  position: relative;
+}
+.main-slide a span {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(53, 53, 53, 0.39);
+  padding: 10px;
+  font-size: 25px;
+  color: #ffffff;
+  padding-left: 30px;
+}
