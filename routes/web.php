@@ -15,3 +15,7 @@ Route::get('/', 'MainController@home')->name('home');
 
 Route::get('/login', 'Auth\LoginController@getLogin');
 Route::post('/login','Auth\LoginController@postLogin')->name('login');
+
+Route::get('/ebook/bookId={id}','MainController@getBook')->name('ebook');
+
+Route::get('/the-loai/{id}', 'MainController@getListBooksByCategory')->name('category');

@@ -47,6 +47,9 @@
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+.section .section-body img {
+  width: 100%;
+}
 .section .section-body .ebook img {
   width: 100%;
 }
@@ -58,6 +61,20 @@
 }
 .section .section-body .ebook .book-name a {
   color: #666;
+}
+.section .section-body .book-detail {
+  margin: 0;
+  padding-left: 5px;
+  list-style-type: none;
+  margin-bottom: 30px;
+}
+.section .section-body .book-detail li.name a h1 {
+  font-size: 20px;
+  margin-top: 0px;
+  margin-bottom: 14px;
+}
+.section .section-body .book-detail li {
+  font-size: 14px;
 }
 .box {
   margin-bottom: 20px;

@@ -27,7 +27,7 @@
                     </a>
                     <div class="dropdown-menu">
                         @foreach($categories as $categoy)
-                            <a class="dropdown-item" href="#">{{$categoy['name']}}</a>
+                            <a class="dropdown-item" href="{{route('category',$categoy['id'])}}">{{$categoy['name']}}</a>
                         @endforeach
                     </div>
                 </li>
@@ -44,7 +44,7 @@
 
 @yield('slide')
 
-<div class="container">
+<div class="container" style="margin-top: 30px">
     <div class="row">
         <div class="col-md-9">
             @yield('content')
