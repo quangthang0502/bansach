@@ -8,6 +8,7 @@
     <title>@yield('title')</title>
     <link rel="stylesheet" href="{{url('node_modules/bootstrap/dist/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{url('node_modules/owl.carousel/dist/assets/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{url('node_modules/font-awesome/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{url('css/main.css')}}">
     @yield('head')
 </head>
@@ -41,10 +42,21 @@
     </nav>
 </header>
 
-@yield('content')
+@yield('slide')
 
-<footer style="margin-top: 1000px">
-    <h1>quang thang</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            @yield('content')
+        </div>
+        <div class="col-md-3">
+            @include('include.right-bar')
+        </div>
+    </div>
+</div>
+
+<footer>
+    <h1>Web ban sach</h1>
 </footer>
 <script src="{{url('node_modules/jquery/dist/jquery.min.js')}}"></script>
 <script src="{{url('node_modules/bootstrap/dist/js/bootstrap.min.js')}}"></script>

@@ -9,6 +9,8 @@ class MainController extends Controller
 {
 	public function home(){
 		$categories = Category::all()->toArray();
-		return view('home')->with(compact('categories'));
+		$category = Category::find(2);
+		$listBooks = $category->getListBooks();
+		return view('home')->with(compact('categories','category','listBooks'));
 	}
 }

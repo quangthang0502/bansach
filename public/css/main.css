@@ -21,3 +21,82 @@
   color: #ffffff;
   padding-left: 30px;
 }
+.title {
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #337ab7;
+  padding: 10px 15px;
+  border-bottom: 1px solid transparent;
+  border-top-left-radius: 3px;
+  font-size: 14px;
+  border-top-right-radius: 3px;
+  margin-bottom: 0;
+}
+.section {
+  margin-bottom: 30px;
+}
+.section .section-body {
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.section .section-body .ebook img {
+  width: 100%;
+}
+.section .section-body .ebook .book-name {
+  font-size: 14px;
+  margin-top: 5px;
+  height: 48px;
+  text-align: center;
+}
+.section .section-body .ebook .book-name a {
+  color: #666;
+}
+.box {
+  margin-bottom: 20px;
+}
+.box .box-content {
+  margin-left: 0;
+  padding-left: 0px;
+  list-style-type: none;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.box .box-content li {
+  cursor: pointer;
+  position: relative;
+  padding: 5px;
+  padding-left: 20px;
+}
+.box .box-content li:before {
+  position: absolute;
+  content: '\f0a4';
+  font-family: FontAwesome;
+  color: #337ab7;
+  left: 5px;
+  top: 10px;
+}
+.box .box-content li a {
+  padding: 6px 10px;
+  font-size: 13px;
+  color: #337ab7;
+  text-decoration: none;
+  width: 100%;
+  display: block;
+}
+.box .box-content li:hover {
+  background-color: rgba(225, 225, 225, 0.46);
+}

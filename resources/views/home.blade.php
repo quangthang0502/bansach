@@ -2,10 +2,10 @@
 
 @section('title', 'Trang chủ')
 
-@section('content')
-
+@section('slide')
     @include('include.slide')
+@endsection
 
-    @include('include.body-content')
-
+@section('content')
+    @include('include.left-bar')
 @endsection
