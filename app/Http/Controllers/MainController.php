@@ -47,4 +47,18 @@ class MainController extends Controller {
 
 		return view( 'goiY' )->with( compact( 'listBooks' ) );
 	}
+
+	public function recommenderA(Request $request){
+		$result    = $request->all();
+		$result1   = $result['bookId'];
+		$i         = 0;
+		$listBooks = [
+			Book::find($result1[0]),
+			Book::find($result1[1]),
+			Book::find($result1[2]),
+			Book::find($result1[3]),
+			Book::find($result1[4]),
+		];
+		return view( 'goiY2' )->with( compact( 'listBooks' ) );
+	}
 }

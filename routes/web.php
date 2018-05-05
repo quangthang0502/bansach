@@ -21,3 +21,5 @@ Route::get('/ebook/bookId={id}','MainController@getBook')->name('ebook');
 Route::get('/the-loai/{id}', 'MainController@getListBooksByCategory')->name('category');
 
 Route::post('/goi-y', 'MainController@recommender')->name('recommender');
+
+Route::post('/goi-y-sach', 'MainController@recommenderA')->name('recommenderA');

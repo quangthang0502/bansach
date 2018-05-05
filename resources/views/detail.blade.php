@@ -28,4 +28,40 @@
             </div>
         </div>
     </section>
+    <section class="section">
+        <h3 class="title">Bạn có thể thích</h3>
+        <div class="section-body">
+            <div class="row" id="recommenderA">
+            </div>
+        </div>
+    </section>
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+               url: 'http://127.0.0.1:5000/fake-user-rate/{{rand(10000000,100000000)}}/{{$book->id}}',
+                type: 'get',
+                headers: {
+                    'Access-Control-Allow-Origin': '*'
+                },
+                success: function (result) {
+                    $.ajax({
+                        url: '{{route('recommenderA')}}',
+                        type: 'post',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        data: {
+                            bookId: result
+                        },
+                        success: function (result) {
+                            $('#recommenderA').append(result);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 @endsection
