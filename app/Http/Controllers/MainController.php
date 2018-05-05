@@ -38,27 +38,36 @@ class MainController extends Controller {
 		$result1   = $result['bookId'];
 		$i         = 0;
 		$listBooks = [
-			Book::find($result1[0]),
-			Book::find($result1[1]),
-			Book::find($result1[2]),
-			Book::find($result1[3]),
-			Book::find($result1[4]),
+			Book::find( $result1[0] ),
+			Book::find( $result1[1] ),
+			Book::find( $result1[2] ),
+			Book::find( $result1[3] ),
+			Book::find( $result1[4] ),
 		];
 
 		return view( 'goiY' )->with( compact( 'listBooks' ) );
 	}
 
-	public function recommenderA(Request $request){
+	public function recommenderA( Request $request ) {
 		$result    = $request->all();
 		$result1   = $result['bookId'];
 		$i         = 0;
 		$listBooks = [
-			Book::find($result1[0]),
-			Book::find($result1[1]),
-			Book::find($result1[2]),
-			Book::find($result1[3]),
-			Book::find($result1[4]),
+			Book::find( $result1[0] ),
+			Book::find( $result1[1] ),
+			Book::find( $result1[2] ),
+			Book::find( $result1[3] ),
+			Book::find( $result1[4] ),
 		];
+
 		return view( 'goiY2' )->with( compact( 'listBooks' ) );
+	}
+
+	public function getLogin() {
+		return view( 'auth/login' );
+	}
+
+	public function getSignUp() {
+		return view( 'auth/signup' );
 	}
 }

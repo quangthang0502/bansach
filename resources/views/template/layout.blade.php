@@ -33,12 +33,24 @@
                         @endforeach
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Đăng ký</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Đăng nhập</a>
-                </li>
+                @if(isLogin())
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            {{isLogin()->name}}
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Trang cá nhân</a>
+                            <a class="dropdown-item" href="{{route('logout')}}">Đăng xuất</a>
+                        </div>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('signUp')}}">Đăng ký</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('login')}}">Đăng nhập</a>
+                    </li>
+                @endif
             </ul>
         </div>
     </nav>

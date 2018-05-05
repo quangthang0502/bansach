@@ -10,3 +10,8 @@ function t_str($value, $function)
 {
 	return \Illuminate\Support\Str::$function($value);
 }
+
+function isLogin()
+{
+	return session()->get('userData');
+}
