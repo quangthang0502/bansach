@@ -7,27 +7,44 @@ use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 
-class MainController extends Controller
-{
+class MainController extends Controller {
 	public function __construct() {
 		$categories = Category::all()->toArray();
-		View::share(['categories' => $categories]);
+		View::share( [ 'categories' => $categories ] );
 	}
 
-	public function home(){
-		$category = Category::find(2);
+	public function home() {
+		$category  = Category::find( 2 );
 		$listBooks = $category->getListBooks();
-		return view('home')->with(compact('category','listBooks'));
+
+		return view( 'home' )->with( compact( 'category', 'listBooks' ) );
 	}
 
-	public function getBook($id) {
-		$book = Book::find($id);
-		return view('detail')->with(compact('book'));
+	public function getBook( $id ) {
+		$book = Book::find( $id );
+
+		return view( 'detail' )->with( compact( 'book' ) );
 	}
 
-	public function getListBooksByCategory($id){
-		$category = Category::find($id);
+	public function getListBooksByCategory( $id ) {
+		$category  = Category::find( $id );
 		$listBooks = $category->getListBooks();
-		return view('listBooksByCategory')->with(compact('category','listBooks'));
+
+		return view( 'listBooksByCategory' )->with( compact( 'category', 'listBooks' ) );
+	}
+
+	public function recommender( Request $request ) {
+		$result    = $request->all();
+		$result1   = $result['bookId'];
+		$i         = 0;
+		$listBooks = [
+			Book::find($result1[0]),
+			Book::find($result1[1]),
+			Book::find($result1[2]),
+			Book::find($result1[3]),
+			Book::find($result1[4]),
+		];
+
+		return view( 'goiY' )->with( compact( 'listBooks' ) );
 	}
 }
