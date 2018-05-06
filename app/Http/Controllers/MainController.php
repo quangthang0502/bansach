@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Book;
 use App\Category;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 
@@ -69,5 +70,12 @@ class MainController extends Controller {
 
 	public function getSignUp() {
 		return view( 'auth/signup' );
+	}
+
+	public function infomation( $name ) {
+		$user          = User::where( [ 'email' => $name ] )->first();
+		$listBooksRate = $user->getUserRate();
+
+		return view( 'userpage' )->with( compact( 'listBooksRate', 'user' ) );
 	}
 }

@@ -39,7 +39,7 @@
                             {{isLogin()->name}}
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Trang cá nhân</a>
+                            <a class="dropdown-item" href="{{route('info',isLogin()->email)}}">Trang cá nhân</a>
                             <a class="dropdown-item" href="{{route('logout')}}">Đăng xuất</a>
                         </div>
                     </li>
@@ -64,14 +64,16 @@
             @yield('content')
         </div>
         <div class="col-md-3">
-            <div class="box">
-                <h3 class="title">
-                    Gợi ý
-                </h3>
-                <ul class="box-content" id="recommender">
+            @if(isLogin())
+                <div class="box">
+                    <h3 class="title">
+                        Gợi ý
+                    </h3>
+                    <ul class="box-content" id="recommender">
 
-                </ul>
-            </div>
+                    </ul>
+                </div>
+            @endif
             @include('include.right-bar')
         </div>
     </div>
@@ -84,32 +86,36 @@
 <script src="{{url('node_modules/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 <script src="{{url('node_modules/owl.carousel/dist/owl.carousel.min.js')}}"></script>
 <script src="{{url('js/main.js')}}"></script>
-<script>
-    $(document).ready(function () {
-        $.ajax({
-            url: 'http://127.0.0.1:5000/get-recommendations/50',
-            type: 'get',
-            headers: {
-                'Access-Control-Allow-Origin': '*'
-            },
-            success: function (result) {
-                $.ajax({
-                    url: '{{route('recommender')}}',
-                    type: 'post',
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    data: {
-                        bookId: result
-                    },
-                    success: function (result) {
-                        $('#recommender').append(result);
-                    }
-                });
-            }
+@if(isLogin())
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: 'http://127.0.0.1:5000/get-recommendations/{{isLogin()->id}}',
+                type: 'get',
+                headers: {
+                    'Access-Control-Allow-Origin': '*'
+                },
+                success: function (result) {
+                    $.ajax({
+                        url: '{{route('recommender')}}',
+                        type: 'post',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        data: {
+                            bookId: result
+                        },
+                        success: function (result) {
+                            $('#recommender').append(result);
+                        }
+                    });
+                    @yield('infoScript')
+                }
+            });
         });
-    });
-</script>
+    </script>
+@endif
+
 @yield('script')
 </body>
 </html>

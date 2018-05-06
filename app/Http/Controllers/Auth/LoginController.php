@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\UserRequest;
 use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -31,7 +32,7 @@ class LoginController extends Controller {
 	 *
 	 * @var string
 	 */
-	protected $redirectTo = '/home';
+	protected $redirectTo = '/';
 
 	/**
 	 * Create a new controller instance.
@@ -56,6 +57,26 @@ class LoginController extends Controller {
 			return redirect()->intended( '/' );
 		} else {
 			$errors = new MessageBag( [ 'loginError' => 'Tài khoản hoặc mật khẩu không đúng' ] );
+
+			return redirect()->back()->withInput()->withErrors( $errors );
+		}
+	}
+
+	public function signUp( RegisterRequest $request ) {
+		$input = $request->only( [ 'email', 'password', 'name' ] );
+		$user  = User::where( [
+			'email' => $input['email']
+		] )->first();
+		if ( ! $user ) {
+			User::create( [
+				'email'    => $input['email'],
+				'name'     => $input['name'],
+				'password' => bcrypt( $input['password'] )
+			] );
+
+			return redirect( '/dang-nhap' );
+		} else {
+			$errors = new MessageBag( [ 'signUpError' => 'Tài khoản đã tồn tại' ] );
 
 			return redirect()->back()->withInput()->withErrors( $errors );
 		}

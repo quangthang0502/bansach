@@ -12,7 +12,6 @@
 */
 
 Route::get('/', 'MainController@home')->name('home');
-
 /*
  * Đăng nhập
  */
@@ -23,6 +22,7 @@ Route::post('/dang-nhap','Auth\LoginController@postLogin');
  * Đăng ký
  */
 Route::get('/dang-ky', 'MainController@getSignUp')->name('signUp');
+Route::post('/dang-ky', 'Auth\LoginController@signUp');
 
 Route::get('/dang-xuat', 'Auth\LoginController@logout')->name('logout');
 
@@ -33,3 +33,8 @@ Route::get('/the-loai/{id}', 'MainController@getListBooksByCategory')->name('cat
 Route::post('/goi-y', 'MainController@recommender')->name('recommender');
 
 Route::post('/goi-y-sach', 'MainController@recommenderA')->name('recommenderA');
+
+/*
+ * Trang cá nhân
+ */
+Route::get('/thong-tin/{name}', 'MainController@infomation')->middleware('auth')->name('info');
