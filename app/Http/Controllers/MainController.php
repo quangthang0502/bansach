@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Book;
 use App\Category;
 use App\User;
+use App\UserRating;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 
 class MainController extends Controller {
@@ -23,8 +25,17 @@ class MainController extends Controller {
 
 	public function getBook( $id ) {
 		$book = Book::find( $id );
-
-		return view( 'detail' )->with( compact( 'book' ) );
+		$bought = false;
+		if(isLogin()){
+			$user_rate = UserRating::where([
+				'user_id' => isLogin()->id,
+				'book_id' => $book->id
+			])->first();
+			if ($user_rate){
+				$bought = true;
+			}
+		}
+		return view( 'detail' )->with( compact( 'book', 'bought' ) );
 	}
 
 	public function getListBooksByCategory( $id ) {
@@ -77,5 +88,15 @@ class MainController extends Controller {
 		$listBooksRate = $user->getUserRate();
 
 		return view( 'userpage' )->with( compact( 'listBooksRate', 'user' ) );
+	}
+
+	public function buy($book_id){
+		$user = Auth::user();
+		UserRating::create([
+			'user_id' => $user->id,
+			'book_id' => $book_id,
+			'rate' => 1
+		]);
+		return redirect()->back();
 	}
 }

@@ -38,3 +38,7 @@ Route::post('/goi-y-sach', 'MainController@recommenderA')->name('recommenderA');
  * Trang cá nhân
  */
 Route::get('/thong-tin/{name}', 'MainController@infomation')->middleware('auth')->name('info');
+/*
+ * mua sách
+ */
+Route::get('/mua-sach/{book_id}', 'MainController@buy')->name('buy')->middleware('auth');

@@ -23,7 +23,15 @@
                         <li> Thể loại : {{$book->category}}</li>
                         <li>View : {{$book->view}}</li>
                     </ul>
-                    <a href="" class="btn btn-success">Đọc ngay</a>
+                    @if(isLogin())
+                        @if($bought)
+                            <label class="btn btn-secondary" disabled>Đã mua</label>
+                        @else
+                            <a href="{{route('buy',$book->id)}}" class="btn btn-success" onclick="buyBook()">Mua ngay</a>
+                        @endif
+                    @else
+                        <a href="{{route('login')}}" class="btn btn-success">Mua ngay</a>
+                    @endif
                 </div>
             </div>
         </div>
@@ -63,5 +71,17 @@
                 }
             });
         });
+        function buyBook() {
+            $.ajax({
+                url: 'http://127.0.0.1:5000/user-rate/{{isLogin()->id}}/{{$book->id}}',
+                type: 'get',
+                headers: {
+                    'Access-Control-Allow-Origin': '*'
+                },
+                success: function (result) {
+                    console.log('thanh cong');
+                }
+            });
+        }
     </script>
 @endsection
