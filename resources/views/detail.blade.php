@@ -27,7 +27,8 @@
                         @if($bought)
                             <label class="btn btn-secondary" disabled>Đã mua</label>
                         @else
-                            <a href="{{route('buy',$book->id)}}" class="btn btn-success" onclick="buyBook()">Mua ngay</a>
+                            <a href="{{route('buy',$book->id)}}" class="btn btn-success" onclick="buyBook()">Mua
+                                ngay</a>
                         @endif
                     @else
                         <a href="{{route('login')}}" class="btn btn-success">Mua ngay</a>
@@ -49,7 +50,7 @@
     <script>
         $(document).ready(function () {
             $.ajax({
-               url: 'http://127.0.0.1:5000/fake-user-rate/{{rand(10000000,100000000)}}/{{$book->id}}',
+                url: 'http://127.0.0.1:5000/fake-user-rate/{{rand(10000000,100000000)}}/{{$book->id}}',
                 type: 'get',
                 headers: {
                     'Access-Control-Allow-Origin': '*'
@@ -71,6 +72,8 @@
                 }
             });
         });
+
+        @if(isLogin())
         function buyBook() {
             $.ajax({
                 url: 'http://127.0.0.1:5000/user-rate/{{isLogin()->id}}/{{$book->id}}',
@@ -83,5 +86,6 @@
                 }
             });
         }
+        @endif
     </script>
 @endsection

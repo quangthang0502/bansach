@@ -42,3 +42,11 @@ Route::get('/thong-tin/{name}', 'MainController@infomation')->middleware('auth')
  * mua sách
  */
 Route::get('/mua-sach/{book_id}', 'MainController@buy')->name('buy')->middleware('auth');
+
+// admin
+Route::get('/admin/login','AdminController@getLogin')->name('adminLogin');
+Route::post('/admin/login','AdminController@postLogin');
+
+Route::group(['middleware' => 'admin'],function (){
+	Route::get('/admin', 'AdminController@dashboard')->name('adminDashboard');
+});
